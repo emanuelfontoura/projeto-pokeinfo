@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/abilities.css">
     <title>PokeInfo</title>
 </head>
 <body>
+
+    <div class="selectContainer">
+        <label class="selectLabel" for="selectPokemon">SELECT YOUR POKEMON</label>
+        <input data-pokemon="selectPokemon" class="selectInput" type="text" name="selectPokemon" id="selectPokemon">
+    </div>
     
-    <button data-pokemon="abilities">ABILITIES</button>
+    <div class="abilitiesContainer">
+        <button class="abilitiesBtn" data-pokemon="abilities">ABILITIES</button>
+        <div class="abilitiesContent" data-pokemon="contentAbilities"></div>
+    </div>
 
     <script type="module" src="js/script.js"></script>
 </body>

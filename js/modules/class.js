@@ -1,16 +1,19 @@
 export default class Pokemon{
-    constructor(name){
-        this.name = name
-        this._objectInfos = this.fetchData()
+    constructor(){
     }
 
-    async fetchData(){
-        const objectResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/`+`${this.name}`)
-        return await objectResponse.json()
+    static async getPokemonInfoFetch(name){
+        return await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then(response => response.json())
+        .catch(error => console.log(error.message))
     }
 
-    async abilities(){
-        await this._objectInfos
-        return this._objectInfos.abilities
+    static async getPokemonAbilities(name){
+        return await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then(response => response.json())
+        .then(respJson => respJson.abilities)
+        .catch(error => console.log(error.message))
     }
 }
+
+export const selectPokemon = document.querySelector('[data-pokemon=selectPokemon]')

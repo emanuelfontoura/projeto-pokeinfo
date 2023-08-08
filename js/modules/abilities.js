@@ -1,8 +1,8 @@
 import Pokemon, { selectPokemon } from "./class.js";
 export default function initAbilities(){
     const contentAbilities = document.querySelector('[data-pokemon=contentAbilities]')
-    const btnAbilities = document.querySelector('[data-pokemon=btnAbilities]')
-    btnAbilities.addEventListener('click', handleClickAbilities)
+    const btnAllActions = document.querySelector('[data-pokemon=btnAllActions]')
+    btnAllActions.addEventListener('click', handleClickAbilities)
 
     function handleClickAbilities(){
         contentAbilities.innerText = ''
@@ -14,7 +14,7 @@ export default function initAbilities(){
                 }
             })
         }).catch(() => {
-            window.alert(`Um erro aconteceu. Verifique se escreveu o nome corretamente e tente de novo!`)
+            console.log('UM ERRO ACONTECEU AO BUSCAR AS HABILIDADES DO POKEMON! VERIFIQUE O NOME E TENTE NOVAMENTE!')
         })
     }
 }

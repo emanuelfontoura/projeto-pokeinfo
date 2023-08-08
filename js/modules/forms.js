@@ -1,24 +1,48 @@
 import Pokemon, { selectPokemon } from "./class.js";
 export default function initForms(){
-    const contentForms = document.querySelector('[data-pokemon=contentForms]')
-    const btnForms = document.querySelector('[data-pokemon=btnForms]')
-    btnForms.addEventListener('click', handleClickForms) 
+    const btnAllActions = document.querySelector('[data-pokemon=btnAllActions]')
+    const imageForms = document.querySelector('[data-pokemon=imageForms]')
+    let intervalNewSpritesArray = null
+    btnAllActions.addEventListener('click', handleClickForms) 
 
     function handleClickForms(){
         const forms = Pokemon.getPokemonForms(selectPokemon.value.toLowerCase())
         forms.then(forms => {
-            console.log(forms[0].url)
-            fetchForms(forms[0].url)
+            let index = 0
+            let spritesArray = []
+            let newSpritesArray = []
+            fetchForms(forms[0].url, index, spritesArray, newSpritesArray)
         }).catch(() => {
-            window.alert(`Um erro aconteceu. Verifique se escreveu o nome corretamente e tente de novo!`)
+            console.log('UM ERRO ACONTECEU AO BUSCAR OS SPRITES DO POKEMON! VERIFIQUE O NOME E TENTE NOVAMENTE!')
+            imageForms.classList.remove('activeImageForms')
         })
     }
 
-    async function fetchForms(url){
+    function fetchForms(url, index, spritesArray, newSpritesArray){
         fetch(url)
         .then(resp => resp.json())
         .then(respJson => {
-            console.log(respJson)
+            spritesArray = Object.values(respJson.sprites)
+            newSpritesArray = spritesArray.filter(sprite => {
+                return sprite !== null
+            })
+            imageForms.classList.add('activeImageForms')
+            imageForms.src = newSpritesArray[0]
+            intervalForms(newSpritesArray, index)
         })
     }
+
+    function intervalForms(newSpritesArray, index){
+        clearInterval(intervalNewSpritesArray)
+        intervalNewSpritesArray = setInterval(() => {
+            if(index < newSpritesArray.length-1){
+                imageForms.src = newSpritesArray[index]
+            }else{
+                index = 0
+            }
+            index++
+        }, 500)
+    }
+
+    return handleClickForms
 }

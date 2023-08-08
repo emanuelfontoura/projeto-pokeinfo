@@ -8,23 +8,23 @@
     <link rel="stylesheet" href="css/container.css">
     <link rel="stylesheet" href="css/content.css">
     <link rel="stylesheet" href="css/select.css">
+    <link rel="stylesheet" href="css/imageForms.css">
     <title>PokeInfo</title>
 </head>
 <body>
-
     <div class="selectContainer">
         <label class="selectLabel" for="selectPokemon">SELECT YOUR POKEMON</label>
         <input data-pokemon="selectPokemon" class="selectInput" type="text" name="selectPokemon" id="selectPokemon">
     </div>
     
+    <button class="btn" data-pokemon="btnAllActions">FIND</button>
+    
     <div class="container">
-        <button class="btn" data-pokemon="btnAbilities">ABILITIES</button>
-        <div class="content" data-pokemon="contentAbilities"></div>
+        <img src="" alt="Sprite" data-pokemon="imageForms" class="imageForms">
     </div>
 
     <div class="container">
-        <button class="btn" data-pokemon="btnForms">FORMAS</button>
-        <div class="content" data-pokemon="contentForms"></div>
+        <div class="content" data-pokemon="contentAbilities"></div>
     </div>
 
     <script type="module" src="js/script.js"></script>
